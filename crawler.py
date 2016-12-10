@@ -1,10 +1,14 @@
 import requests
 
 
-def crawler(site, palavra=''):
+dic = {}
+
+
+def crawler(site, word=''):
     try:
         req = requests.get(site)
-        return req.text.count(palavra)
+        dic[word] = req.text.count(word)
+        return dic
     except Exception as e:
         print('Erro na conexão', e)
         return None
