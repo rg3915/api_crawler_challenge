@@ -10,14 +10,18 @@ args = parser.parse_args()
 dic = {}
 
 
-def crawler(site, word=''):
+def crawler(site):
     try:
-        req = requests.get(site)
-        dic[word] = req.text.count(word)
-        return dic
+        return requests.get(site)
     except Exception as e:
         print('Erro na conexão', e)
         return None
 
 
-print(crawler(args.site, args.word))
+def _counter(word=''):
+    res = crawler(args.site)
+    dic[word] = res.text.count(word)
+    return dic
+
+
+print(_counter(args.word))
