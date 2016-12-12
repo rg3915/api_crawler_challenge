@@ -23,7 +23,8 @@ Temos um primeiro exemplo simples feito com Python puro. No terminal digite
 
 ```bash
 python crawler.py -h
-python crawler.py http://python.org/ Python
+python crawler.py http://python.org/ Python #ou
+python crawler.py python.org Python
 ```
 
 ## Testes
