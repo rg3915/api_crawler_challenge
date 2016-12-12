@@ -2,9 +2,9 @@ import argparse
 import requests
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument('site')
-parser.add_argument('word')
+parser = argparse.ArgumentParser(description='Crawler to count word in site.')
+parser.add_argument('site', help='url of the site')
+parser.add_argument('word', help='word to count in the site')
 args = parser.parse_args()
 
 dic = {}
