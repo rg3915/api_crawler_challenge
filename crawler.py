@@ -1,5 +1,11 @@
+import argparse
 import requests
 
+
+parser = argparse.ArgumentParser()
+parser.add_argument('site')
+parser.add_argument('word')
+args = parser.parse_args()
 
 dic = {}
 
@@ -14,4 +20,4 @@ def crawler(site, word=''):
         return None
 
 
-print(crawler('https://www.python.org/', 'Python'))
+print(crawler(args.site, args.word))
