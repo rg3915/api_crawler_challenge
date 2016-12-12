@@ -27,7 +27,7 @@ def crawler(url):
         return None
 
 
-def _counter(word=''):
+def quantity_word(word=''):
     ''' Count words in text returned '''
     res = crawler(args.url)
     dic[word] = res.count(word)
@@ -35,4 +35,4 @@ def _counter(word=''):
 
 
 if __name__ == '__main__':
-    print(_counter(args.word))
+    print(quantity_word(args.word))
