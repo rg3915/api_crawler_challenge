@@ -1,27 +1,38 @@
 import argparse
+import re
 import requests
 
-
 parser = argparse.ArgumentParser(description='Crawler to count word in site.')
-parser.add_argument('site', help='url of the site')
+parser.add_argument('url', help='url of the site')
 parser.add_argument('word', help='word to count in the site')
 args = parser.parse_args()
 
+pat_is_http = re.compile(r'(https?:\/\/[^\s]+)')
 dic = {}
 
 
-def crawler(site):
+def url_contain_http(url, pat_is_http):
+    ''' Checks if url contains http '''
+    if not pat_is_http.match(url):
+        url = 'http://' + url
+    return url
+
+
+def crawler(url):
     try:
-        return requests.get(site)
+        url = url_contain_http(args.url, pat_is_http)
+        return requests.get(url).text
     except Exception as e:
         print('Erro na conexão', e)
         return None
 
 
 def _counter(word=''):
-    res = crawler(args.site)
-    dic[word] = res.text.count(word)
+    ''' Count words in text returned '''
+    res = crawler(args.url)
+    dic[word] = res.count(word)
     return dic
 
 
-print(_counter(args.word))
+if __name__ == '__main__':
+    print(_counter(args.word))
