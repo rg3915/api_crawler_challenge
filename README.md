@@ -17,9 +17,17 @@ A API deve ser capaz de fazer um crawler no site informado e retornar uma respos
 
 ## Instalação
 
+## Crawler
+
+Temos um primeiro exemplo simples feito com Python puro. No terminal digite
+
+```bash
+python crawler.py -h
+python crawler.py http://python.org/ Python
+```
+
 ## Testes
 
 ## Api Rest
 
-## Crawler
 
