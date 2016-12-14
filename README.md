@@ -17,6 +17,9 @@ A API deve ser capaz de fazer um crawler no site informado e retornar uma respos
 
 ## Instalação
 
+python contrib/secret_gen.py
+
+
 ## Crawler
 
 Temos um primeiro exemplo simples feito com Python puro. No terminal digite

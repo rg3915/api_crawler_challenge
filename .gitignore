@@ -81,6 +81,7 @@ celerybeat-schedule
 # virtualenv
 venv/
 ENV/
+.venv/
 
 # Spyder project settings
 .spyderproject
@@ -88,4 +89,5 @@ ENV/
 # Rope project settings
 .ropeproject
 
-.venv
+*.sqlite3
+*.DS_Store
