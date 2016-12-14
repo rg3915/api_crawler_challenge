@@ -14,6 +14,8 @@ A API deve ser capaz de fazer um crawler no site informado e retornar uma respos
 
 * Python 3.5.0
 * Django==1.10.4
+* djangorestframework==3.5.3
+
 
 ## Instalação
 
