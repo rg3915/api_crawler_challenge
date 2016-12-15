@@ -21,6 +21,9 @@ A API deve ser capaz de fazer um crawler no site informado e retornar uma respos
 ```bash
 git clone https://github.com/rg3915/api_crawler_challenge.git
 cd api_crawler_challenge
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 python contrib/secret_gen.py
 ```
 
