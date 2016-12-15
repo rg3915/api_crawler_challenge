@@ -1,9 +1,44 @@
+
 from django.test import TestCase
-from django.shortcuts import resolve_url
+from myproject.core.crawler import contains_http, crawler
+
+class APIGetTest(TestCase):
+
+    def setUp(self):
+        self.res = self.client.get('/api/?url=python.org&w=Python')
+
+    def test_get(self):
+        """Must return status code 200."""
+        self.assertEqual(200, self.res.status_code)
+
+    def test_content(self):
+        """Response must contain word chosen (Python) and its number of word occurrences (97)."""
+        CONTENTS = ('Python', '97')
+
+        for content in CONTENTS:
+            with self.subTest():
+                self.assertContains(self.res, content)
 
 
 class CrawlerTest(TestCase):
 
-    def test_res(self):
-        res = {'Python': 97}
-        self.assertEqual({'Python': 97}, res)
+    def test_response_content(self):
+        """Response must return website content."""
+        res = crawler('http://www.python.org')
+        self.assertTrue(res)
+
+
+class UrlSchemasTest(TestCase):
+
+    def test_url_not_contains_http(self):
+        """Must add schema HTTP in the beginning of the URL."""
+        url = 'www.python.org'
+        self.assertEqual('http://' + url, contains_http(url))
+
+    def test_url_contains_http(self):
+        """Must keep the URL the same when they have either HTTP or HTTPS schema."""
+        urls = ['http://www.python.org', 'https://www.python.org']
+        for url in urls:
+            with self.subTest():
+                self.assertEqual(url, contains_http(url))
+
