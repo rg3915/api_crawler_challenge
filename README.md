@@ -33,12 +33,6 @@ python crawler.py -h
 python crawler.py python.org Python
 ```
 
-## Testes
-
-```bash
-python manage.py test
-```
-
 ## Api Rest
 
 ```bash
