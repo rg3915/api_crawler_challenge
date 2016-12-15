@@ -3,7 +3,6 @@ import requests
 
 
 pat_is_http = re.compile(r'(https?:\/\/[^\s]+)')
-dic = {}
 
 url = 'python.org'
 
@@ -26,6 +25,7 @@ def crawler(url):
 
 def quantity_word(word=''):
     ''' Count words in text returned '''
+    dic = {}
     res = crawler(url)
     dic[word] = res.count(word)
     return dic
