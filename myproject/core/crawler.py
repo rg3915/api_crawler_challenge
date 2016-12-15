@@ -2,12 +2,12 @@ import re
 import requests
 
 def contains_http(url):
-    ''' Checks if url contains http '''
+    ''' Checks if url contains http or https. '''
     STARTS_WITH_HTTP_OR_HTTPS = re.compile(r'(https?:\/\/[^\s]+)')
     return 'http://' + url if not STARTS_WITH_HTTP_OR_HTTPS.match(url) else url
 
-def crawler(url):
-    """Retrieves the page content given a URL."""
+def get_text_content(url):
+    """Retrieves the page text content given a URL."""
     try:
         url = contains_http(url)
         return requests.get(url).text
@@ -16,9 +16,10 @@ def crawler(url):
         return None
 
 
-def quantity_word(url, word=''):
-    """Count words in text returned"""
+def find_word_occurrences(url, word=''):
+    """Find word occurrences based on the content retrieved."""
     occurrences = {}
-    res = crawler(url)
-    occurrences[word] = res.count(word)
+    occurrences[word] = get_text_content(url).count(word)
     return occurrences
+
+

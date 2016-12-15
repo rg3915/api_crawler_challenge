@@ -1,5 +1,5 @@
 from django.http import HttpResponse, JsonResponse
-from .crawler import quantity_word
+from .crawler import find_word_occurrences
 
 
 def counter_word(request):
@@ -11,5 +11,5 @@ def counter_word(request):
     url = request.GET['url']
     word = request.GET['w']
     if url is not None and word is not None:
-        res = quantity_word(url, word)
+        res = find_word_occurrences(url, word)
     return HttpResponse(JsonResponse(res))

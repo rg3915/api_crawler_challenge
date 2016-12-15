@@ -1,8 +1,10 @@
 
 from django.test import TestCase
-from myproject.core.crawler import contains_http, crawler
+from myproject.core.crawler import contains_http, get_text_content
+
 
 class APIGetTest(TestCase):
+    """Tests for API GET Method."""
 
     def setUp(self):
         self.res = self.client.get('/api/?url=python.org&w=Python')
@@ -21,17 +23,19 @@ class APIGetTest(TestCase):
 
 
 class CrawlerTest(TestCase):
+    """Tests for crawler."""
 
     def test_response_content(self):
         """Response must return website content."""
-        res = crawler('http://www.python.org')
+        res = get_text_content('http://www.python.org')
         self.assertTrue(res)
 
 
-class UrlSchemasTest(TestCase):
+class UrlSchemesTest(TestCase):
+    """Tests for HTTP/HTTPS schemes."""
 
     def test_url_not_contains_http(self):
-        """Must add schema HTTP in the beginning of the URL."""
+        """Must add scheme HTTP in the beginning of the URL."""
         url = 'www.python.org'
         self.assertEqual('http://' + url, contains_http(url))
 
