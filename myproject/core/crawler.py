@@ -4,8 +4,6 @@ import requests
 
 pat_is_http = re.compile(r'(https?:\/\/[^\s]+)')
 
-url = 'python.org'
-
 
 def url_contain_http(url, pat_is_http):
     ''' Checks if url contains http '''
@@ -23,7 +21,7 @@ def crawler(url):
         return None
 
 
-def quantity_word(word=''):
+def quantity_word(url, word=''):
     ''' Count words in text returned '''
     dic = {}
     res = crawler(url)
