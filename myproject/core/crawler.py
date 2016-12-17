@@ -1,29 +1,25 @@
 import re
 import requests
 
+def contains_http(url):
+    ''' Checks if url contains http or https. '''
+    STARTS_WITH_HTTP_OR_HTTPS = re.compile(r'(https?:\/\/[^\s]+)')
+    return 'http://' + url if not STARTS_WITH_HTTP_OR_HTTPS.match(url) else url
 
-pat_is_http = re.compile(r'(https?:\/\/[^\s]+)')
-
-
-def url_contain_http(url, pat_is_http):
-    ''' Checks if url contains http '''
-    if not pat_is_http.match(url):
-        url = 'http://' + url
-    return url
-
-
-def crawler(url):
+def get_text_content(url):
+    """Retrieves the page text content given a URL."""
     try:
-        url = url_contain_http(url, pat_is_http)
+        url = contains_http(url)
         return requests.get(url).text
     except Exception as e:
         print('Erro na conexão', e)
         return None
 
 
-def quantity_word(url, word=''):
-    ''' Count words in text returned '''
-    dic = {}
-    res = crawler(url)
-    dic[word] = res.count(word)
-    return dic
+def find_word_occurrences(url, word=''):
+    """Find word occurrences based on the content retrieved."""
+    occurrences = {}
+    occurrences[word] = get_text_content(url).count(word)
+    return occurrences
+
+
