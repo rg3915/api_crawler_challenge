@@ -14,8 +14,8 @@ class APIGetTest(TestCase):
         self.assertEqual(200, self.res.status_code)
 
     def test_content(self):
-        """Response must contain word chosen (Python) and its number of word occurrences (97)."""
-        CONTENTS = ('Python', '97')
+        """Response must contain word chosen (Python) and its number of word occurrences (98)."""
+        CONTENTS = ('Python', '98')
 
         for content in CONTENTS:
             with self.subTest():
@@ -45,4 +45,3 @@ class UrlSchemesTest(TestCase):
         for url in urls:
             with self.subTest():
                 self.assertEqual(url, contains_http(url))
-
