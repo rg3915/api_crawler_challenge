@@ -47,3 +47,5 @@ No Browser digite, por exemplo
 ```
 localhost:8000/api/?url=python.org&w=Python
 ```
+
+*pontotel*
